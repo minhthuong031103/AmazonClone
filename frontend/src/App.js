@@ -1,37 +1,26 @@
-import data from "./data";
-
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import HomeScreen from "./Views/Home";
+import ProductScreen from "./Views/Product";
 function App() {
   return (
-    <div>
-      <header>
-        <a href="/">Amazona</a>
-      </header>
-      <main>
-        <h1>Featured Products</h1>
-        <div className="products">
-          {data.products.map((product) => (
-            <div className="product" key={product.slug}>
-              {/* use key to fix error each child has unique key */}
-              <a href={`/product/${product.slug}`}>
-                {/* use the {} to dynamic, the `` to get object property */}
-                <img src={product.image} alt={product.name}></img>
-              </a>
-              <div className="product-info">
-                <a href={"/product/" + product.slug}>
-                  <p>{product.name}</p>
-                </a>
+    <BrowserRouter>
+      <div>
+        <header>
+          <Link to="/">Amazona</Link>
+          {/* use Link instead of a to avoid refresh pages */}
+        </header>
 
-                <p>
-                  <strong>$</strong>
-                  {product.price}
-                </p>
-                <button>Add to cart</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
+        <Routes>
+          <Route
+            path="/product/:slug"
+            // :slug means we pass the value after : use as the parameter => useParams() will return the object
+            //  containing it
+            element={<ProductScreen></ProductScreen>}
+          ></Route>
+          <Route path="/" element={<HomeScreen></HomeScreen>}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
