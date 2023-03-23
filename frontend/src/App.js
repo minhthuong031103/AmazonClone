@@ -9,16 +9,17 @@ function App() {
           <Link to="/">Amazona</Link>
           {/* use Link instead of a to avoid refresh pages */}
         </header>
-
-        <Routes>
-          <Route
-            path="/product/:slug"
-            // :slug means we pass the value after : use as the parameter => useParams() will return the object
-            //  containing it
-            element={<ProductScreen></ProductScreen>}
-          ></Route>
-          <Route path="/" element={<HomeScreen></HomeScreen>}></Route>
-        </Routes>
+        <main>
+          <Routes>
+            <Route
+              path="/product/:slug"
+              // :slug means we pass the value after : use as the parameter => useParams() will return the object
+              //  containing it
+              element={<ProductScreen></ProductScreen>}
+            ></Route>
+            <Route path="/" element={<HomeScreen></HomeScreen>}></Route>
+          </Routes>
+        </main>
       </div>
     </BrowserRouter>
   );
